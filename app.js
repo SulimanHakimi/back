@@ -31,12 +31,11 @@ app.use(passport.session());
 
 app.use(
   cors({
-    origin: "*",
+    origin: "https://front-theta-mocha.vercel.app/",
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
 );
-
 app.use("/auth", authRoute);
 
 app.listen("4000", () => {
