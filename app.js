@@ -38,6 +38,6 @@ app.use(
 );
 app.use("/auth", authRoute);
 
-app.listen("4000", () => {
+app.listen("https://back-jade-eight.vercel.app", () => {
   console.log("Server is running!");
 });
