@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const passport = require("passport");
 
-const CLIENT_URL = "https://front-theta-mocha.vercel.app/";
+const CLIENT_URL = "http://localhost:3000";
 
 router.get("/login/success", (req, res) => {
   if (req.user) {
@@ -9,6 +9,7 @@ router.get("/login/success", (req, res) => {
       success: true,
       message: "successfull",
       user: req.user,
+      //   cookies: req.cookies
     });
   }
 });
@@ -20,12 +21,13 @@ router.get("/login/failed", (req, res) => {
   });
 });
 
-router.get('/logout', function(req, res, next) {
-  req.logout(function(err) {
-    if (err) { return next(err); }
+router.get("/logout", (req, res) => {
+  req.logout(req.user, (err) => {
+    if (err) return next(err);
     res.redirect(CLIENT_URL);
   });
 });
+
 router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
 
 router.get(
@@ -35,5 +37,17 @@ router.get(
     failureRedirect: "/login/failed",
   })
 );
+router.get(
+  "/facebook",
+  passport.authenticate("facebook", { scope: ["profile"] })
+);
 
-module.exports = router
+router.get(
+  "/facebook/callback",
+  passport.authenticate("facebook", {
+    successRedirect: CLIENT_URL,
+    failureRedirect: "/login/failed",
+  })
+);
+
+module.exports = router;

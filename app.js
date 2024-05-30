@@ -31,13 +31,14 @@ app.use(passport.session());
 
 app.use(
   cors({
-    origin: "https://front-theta-mocha.vercel.app/",
+    origin: "http://localhost:3000",
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
 );
+
 app.use("/auth", authRoute);
 
-app.listen("https://back-jade-eight.vercel.app", () => {
+app.listen("4000", () => {
   console.log("Server is running!");
 });
