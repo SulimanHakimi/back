@@ -39,8 +39,11 @@ router.get(
 );
 router.get(
   "/facebook",
-  passport.authenticate("facebook", { scope: ["profile"] })
+  // passport.authenticate("facebook", { scope: ["profile"] })
+  passport.authenticate("facebook")
 );
+
+router.get("/auth/error", (req, res) => res.send("Unknown Error"));
 
 router.get(
   "/facebook/callback",

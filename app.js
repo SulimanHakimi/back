@@ -10,7 +10,7 @@ app.use(
   cookieSession({
     name: "session",
     keys: ["suliman"],
-    maxAge: 24 * 60 * 60 * 100,
+    maxAge: 60 * 60 * 24 * 30 * 1000,
   })
 );
 app.use(function (request, response, next) {
