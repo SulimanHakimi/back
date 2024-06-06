@@ -35,7 +35,10 @@ app.use(passport.session());
 
 app.use(
   cors({
-    origin: "*",
+    origin: [
+      "https://back-jade-eight.vercel.app",
+      "https://front-theta-mocha.vercel.app",
+    ],
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
