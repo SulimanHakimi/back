@@ -7,6 +7,7 @@ const authRoute = require("./routes/auth");
 // const db = require("./db");
 const app = express();
 // db.connect();
+require("dotenv").config();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(
@@ -34,7 +35,7 @@ app.use(passport.session());
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: process.env.CLIENT_URL || "http://localhost:3000",
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
