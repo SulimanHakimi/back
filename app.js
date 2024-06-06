@@ -15,6 +15,7 @@ app.use(
     name: "session",
     keys: ["suliman"],
     maxAge: 60 * 60 * 24 * 30 * 1000,
+    domain: ".vercel.app",
   })
 );
 app.use(function (request, response, next) {
