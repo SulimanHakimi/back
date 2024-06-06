@@ -4,8 +4,11 @@ const cors = require("cors");
 const passportSetup = require("./passport");
 const passport = require("passport");
 const authRoute = require("./routes/auth");
+// const db = require("./db");
 const app = express();
+// db.connect();
 
+app.use(express.urlencoded({ extended: false }));
 app.use(
   cookieSession({
     name: "session",

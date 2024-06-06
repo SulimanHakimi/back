@@ -2,7 +2,22 @@ const router = require("express").Router();
 const passport = require("passport");
 
 const CLIENT_URL = "http://localhost:3000";
+const users = [];
 
+router.post("/sign-up", (req, res) => {
+  try {
+    users.push({
+      crateDate: Date.now().toString(),
+      name: req.body.name,
+      lastName: req.body.famliyName,
+      email: req.body.email,
+      password: req.body.password,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+router.post("/login", (req, res) => {});
 router.get("/login/success", (req, res) => {
   try {
     if (req.user) {
@@ -14,20 +29,19 @@ router.get("/login/success", (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 });
 
 router.get("/login/failed", (req, res) => {
- try {
-  res.status(401).json({
-    success: false,
-    message: "failure",
-  });
- } catch (error) {
-  console.log(error)
-
- }
+  try {
+    res.status(401).json({
+      success: false,
+      message: "failure",
+    });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 router.get("/logout", (req, res) => {
@@ -37,8 +51,7 @@ router.get("/logout", (req, res) => {
       res.redirect(CLIENT_URL);
     });
   } catch (error) {
-    console.log(error)
-
+    console.log(error);
   }
 });
 
